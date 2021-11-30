@@ -1,3 +1,4 @@
+#!/bin/bash
 #
 # ~/.bashrc
 #
@@ -5,5 +6,28 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
-alias ls='ls --color=auto'
-PS1='[\u@\h \W]\$ '
+preexec () {
+  start=`date +%s.%N`
+}
+preexec_invoke_exec () {
+    [ -n "$COMP_LINE" ] && return  # do nothing if completing
+    [ "$BASH_COMMAND" = "$PROMPT_COMMAND" ] && return # don't cause a preexec for $PROMPT_COMMAND
+    local this_command=`HISTTIMEFORMAT= history 1 | sed -e "s/^[ ]*[0-9]*[ ]*//"`;
+    preexec "$this_command"
+}
+trap 'preexec_invoke_exec' DEBUG
+
+showTime () {
+  end=`date +%s.%N`
+  echo "$end - $start" | bc -l | sed 's/^\./0./' | head -c 5 | sed 's/\.$//' | sed 's/$/ s/' 
+}
+
+function showGitInfo {
+  git status &>/dev/null || return
+  status=$(git status --porcelain)
+  staged=$(echo "$status" | grep '^[ADMR]' | wc -l)
+  other=$(echo "$status" | grep '^.[^ ]' | wc -l)
+  echo " (git: $staged/$other)"
+}
+
+export PS1='\n`[[ $? = 0 ]] && echo -n "\e[1;33m" || echo -n "\e[1;31m"`$(showTime)\e[m - \t - \e[1;32m\w\e[m\e[1;34m$(showGitInfo)\e[m\n -> '
