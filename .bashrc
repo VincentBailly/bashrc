@@ -40,3 +40,26 @@ function showGitInfo {
 # - current directory
 # - if current directory is within a git repo, show number of files staged and number of files unstaged
 export PS1='\n`[[ $? = 0 ]] && echo -n "\e[1;33m" || echo -n "\e[1;31m"`$(showTime)\e[m - \t - \e[1;32m\w\e[m\e[1;34m$(showGitInfo)\e[m\n -> '
+
+export EDITOR=nvim
+
+# history size:
+export HISTSIZE=100000
+export HISTFILESIZE=100000
+
+e () {
+  nvim "$@"
+}
+
+v () {
+  nvim "$@"
+}
+
+r () {
+  ranger "$@"
+}
+
+ls () {
+  /usr/bin/ls --color=auto "$@"
+}
+
