@@ -59,6 +59,14 @@ r () {
   ranger "$@"
 }
 
+vb () {
+  vcsh bash "$@"
+}
+
+vv () {
+  vcsh vim "$@"
+}
+
 ls () {
   /usr/bin/ls --color=auto "$@"
 }
