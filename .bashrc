@@ -63,3 +63,6 @@ ls () {
   /usr/bin/ls --color=auto "$@"
 }
 
+# Increase max number of open files
+sudo prlimit --nofile=65000 --pid $$
+
