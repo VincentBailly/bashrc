@@ -59,6 +59,30 @@ r () {
   ranger "$@"
 }
 
+g () {
+  git "$@"
+}
+
+gd () {
+  git diff "$@"
+}
+
+gds () {
+  git diff --staged "$@"
+}
+
+gs () {
+  git status "$@"
+}
+
+gc () {
+  git commit "$@"
+}
+
+gp () {
+  git push "$@"
+}
+
 vb () {
   vcsh bash "$@"
 }
