@@ -96,6 +96,10 @@ vv () {
 }
 
 ls () {
+  /usr/bin/ls --color=auto -la "$@"
+}
+
+l () {
   /usr/bin/ls --color=auto "$@"
 }
 
