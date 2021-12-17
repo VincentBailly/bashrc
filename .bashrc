@@ -102,3 +102,6 @@ ls () {
 # Increase max number of open files
 sudo prlimit --nofile=65000 --pid $$
 
+alias ..='cd ..'
+alias ...='cd ../..'
+alias ....='cd ../../..'
