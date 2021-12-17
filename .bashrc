@@ -91,8 +91,56 @@ vb () {
   vcsh bash "$@"
 }
 
+vbs () {
+  vcsh bash status "$@"
+}
+
+vbd () {
+  vcsh bash diff "$@"
+}
+
+vbds () {
+  vcsh bash diff --staged "$@"
+}
+
+vba () {
+  vcsh bash add "$@"
+}
+
+vbc () {
+  vcsh bash commit "$@"
+}
+
+vbp () {
+  vcsh bash push "$@"
+}
+
 vv () {
   vcsh vim "$@"
+}
+
+vvs () {
+  vcsh vim status "$@"
+}
+
+vvd () {
+  vcsh vim diff "$@"
+}
+
+vvds () {
+  vcsh vim diff --staged "$@"
+}
+
+vva () {
+  vcsh vim add "$@"
+}
+
+vvc () {
+  vcsh vim commit "$@"
+}
+
+vvp () {
+  vcsh vim push "$@"
 }
 
 ls () {
