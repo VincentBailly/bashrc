@@ -161,3 +161,6 @@ sudo prlimit --nofile=65000 --pid $$
 alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
+
+# add nrv path to PATH
+export PATH=$PATH:$HOME/.local/bin
