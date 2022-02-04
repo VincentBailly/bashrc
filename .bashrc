@@ -173,3 +173,7 @@ alias ....='cd ../../..'
 # add nrv path to PATH
 export PATH=$PATH:$HOME/.local/bin
 
+# disable XON/XOFF to make C-S work for incremental search
+# https://stackoverflow.com/questions/791765/unable-to-forward-search-bash-history-similarly-as-with-ctrl-r
+# This condition tests whether the current shell is interactive
+[[ $- == *i* ]] && stty -ixon
