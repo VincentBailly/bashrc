@@ -4,9 +4,12 @@ set colored-stats On
 set completion-ignore-case On
 set mark-modified-lines On
 set mark-symlinked-directories On
+set mark-directories On
 set show-all-if-ambiguous On
+set show-all-if-unmodified Off
+set menu-complete-display-prefix On
 
 "\C-p": history-search-backward
 "\C-n": history-search-forward
-"\t": menu-complete
+# "\t": menu-complete
 "\e[Z": menu-complete-backward
