@@ -163,6 +163,10 @@ c () {
   cd "$@"
 }
 
+x () {
+  exa --long --git --tree --all -I .git "$@"
+}
+
 # Increase max number of open files
 sudo prlimit --nofile=65000 --pid $$
 
@@ -177,3 +181,8 @@ export PATH=$PATH:$HOME/.local/bin
 # https://stackoverflow.com/questions/791765/unable-to-forward-search-bash-history-similarly-as-with-ctrl-r
 # This condition tests whether the current shell is interactive
 [[ $- == *i* ]] && stty -ixon
+
+[ -z "$NVM_DIR" ] && export NVM_DIR="$HOME/.nvm"
+source /usr/share/nvm/nvm.sh
+source /usr/share/nvm/bash_completion
+source /usr/share/nvm/install-nvm-exec
