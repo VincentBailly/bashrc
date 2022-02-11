@@ -12,8 +12,9 @@ preexec () {
 }
 preexec_invoke_exec () {
     [ -n "$COMP_LINE" ] && return  # do nothing if completing
-    [ "$BASH_COMMAND" = "$PROMPT_COMMAND" ] && return # don't cause a preexec for $PROMPT_COMMAND
+    [ "$BASH_COMMAND" = "$PROMPT_COMMAND" ] && return # don't cause a preexec for $PROMPT_COMMAND, this assumes that PROMPT_COMMAND is a single command
     local this_command=`HISTTIMEFORMAT= history 1 | sed -e "s/^[ ]*[0-9]*[ ]*//"`;
+
     preexec "$this_command"
 }
 trap 'preexec_invoke_exec' DEBUG
@@ -50,7 +51,13 @@ shopt -s histappend
 ## Erase dups
 export HISTCONTROL=erasedups
 ## Save and reload the history after each command finishes
-export PROMPT_COMMAND='history -a; history -c; history -r'
+reloadHistory() {
+  history -a
+  history -c
+  history -r
+}
+## Note that it is important to have PROMPT_COMMAND be a single command otherwise it breaks the script execution timer
+export PROMPT_COMMAND='reloadHistory'
 
 
 export EDITOR=nvim
