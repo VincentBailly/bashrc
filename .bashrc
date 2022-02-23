@@ -98,6 +98,10 @@ gc () {
   git commit "$@"
 }
 
+gcm () {
+  git commit -m "$@"
+}
+
 gp () {
   git push "$@"
 }
